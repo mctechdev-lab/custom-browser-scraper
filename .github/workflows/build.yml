@@ -11,12 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-- name: Build debug keystore from base64
-  env:
-    DEBUG_KEYSTORE: ${{ secrets.DEBUG_KEYSTORE }}
-  run: |
-    python3 -c "import base64, os; open('debug.keystore', 'wb').write(base64.b64decode(os.environ['DEBUG_KEYSTORE']))"
-    
+      - name: Build debug keystore
+        run: keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
 
       - uses: actions/setup-java@v4
         with:
@@ -34,5 +30,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: app-debug
-          path: app/build/outputs/apk/debug/app-debug.apk
           
