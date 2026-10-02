@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.custombrowser">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -9,10 +8,10 @@
         android:icon="@android:drawable/sym_def_app_icon"
         android:label="Custom Browser"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
+        android:theme="@android:style/Theme.DeviceDefault">
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.custombrowser.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
