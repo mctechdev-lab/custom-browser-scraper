@@ -11,8 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build debug keystore from base64
-        run: base64 -d debug-keystore.txt > debug.keystore
+- name: Build debug keystore from base64
+  env:
+    DEBUG_KEYSTORE: ${{ secrets.DEBUG_KEYSTORE }}
+  run: |
+    python3 -c "import base64, os; open('debug.keystore', 'wb').write(base64.b64decode(os.environ['DEBUG_KEYSTORE']))"
+    
 
       - uses: actions/setup-java@v4
         with:
